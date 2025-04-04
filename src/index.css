@@ -1,0 +1,35 @@
+
+@import "tailwindcss";
+@font-face {
+  font-family: bebas;
+  src: url("../src/fonts/BebasNeue-Regular.ttf");
+
+}
+@font-face {
+  font-family: PlusJakarta Sans;
+  src: url("../src/fonts/PlusJakartaSans-Medium.ttf");
+
+}
+@font-face {
+  font-family: PlusJakarta Sans L;
+  src: url("../src/fonts/PlusJakartaSans-Light.ttf");
+  
+}
+@theme {
+  --font-bebas: bebas,"sans-serif";
+  --font-jmed: PlusJakarta Sans,"sans-serif";
+  --font-jl: PlusJakarta Sans L,"sans-serif";}
+  
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+ 
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
