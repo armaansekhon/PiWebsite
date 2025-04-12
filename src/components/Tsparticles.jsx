@@ -51,7 +51,7 @@ const Tsparticles = () => {
       },
       number: {
         density: { enable: true, area: 800 },
-        value: 60,
+        value: 40,
       },
       opacity: { value: 0.5 },
       shape: { type: "circle" },
@@ -63,7 +63,7 @@ const Tsparticles = () => {
   if (!init) return null;
 
   return (
-    <div className="absolute fixed inset-0 z-0 w-full h-full pointer-events-none">
+    <div className=" fixed inset-0 z-0 w-full h-full pointer-events-none">
       <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
     </div>
   );
