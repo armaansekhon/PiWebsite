@@ -15,10 +15,28 @@
   src: url("../src/fonts/PlusJakartaSans-Light.ttf");
   
 }
+@font-face {
+  font-family: PlusJakarta Sans R;
+  src: url("../src/fonts/PlusJakartaSans-Regular.ttf");
+  
+}
+@font-face {
+  font-family: PlusJakarta Sans B;
+  src: url("../src/fonts/PlusJakartaSans-Bold.ttf");
+  
+}
+@font-face {
+  font-family: PlusJakarta Sans SB;
+  src: url("../src/fonts/PlusJakartaSans-SemiBold.ttf");
+  
+}
 @theme {
   --font-bebas: bebas,"sans-serif";
   --font-jmed: PlusJakarta Sans,"sans-serif";
-  --font-jl: PlusJakarta Sans L,"sans-serif";}
+  --font-jl: PlusJakarta Sans L,"sans-serif";
+  --font-jr: PlusJakarta Sans R,"sans-serif";
+  --font-jB: PlusJakarta Sans B,"sans-serif";
+  --font-jSB: PlusJakarta Sans SB,"sans-serif";}
   
 
 :root {
