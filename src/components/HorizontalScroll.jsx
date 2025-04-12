@@ -121,7 +121,8 @@ const cards = [
         description:
           "We make your brand more relevant to your customers. Starting with comprehensive audience analysis, we uncover the topics that matter most. Then, we optimize your application to align perfectly with your customers' needs, creating a tailored experience that drives engagement",
         videoSrc: vid4,
-        bgClass: "from-[#0f172a] to-[#1e3a8a]",
+        // bgClass: "from-[#0f172a] to-[#1e3a8a]",
+          bgClass:"white border-white border-1"
       },
       {
         id: 5,
@@ -130,7 +131,8 @@ const cards = [
         description:
           "We optimize your website to ensure that both customers and search engines can effortlessly discover and comprehend every page. Achieving maximum visibility requires a blend of robust technical infrastructure, thoughtful site architecture, and an outstanding user experience. Let us enhance your online presence and drive meaningful engagement!",
         videoSrc: vid5,
-        bgClass: "from-[#bbf7d0] to-[#16a34a]",
+        // bgClass: "from-[#bbf7d0] to-[#16a34a]",
+           bgClass:"white border-white border-1"
       },
       {
         id: 6,
@@ -139,7 +141,8 @@ const cards = [
         description:
           "At Pisoft , we provide comprehensive technical support  in areas such as networking, cloud computing, and security. Our dedicated team is here to ensure that your systems run smoothly, addressing any issues promptly. With our expert guidance, you can focus on your core business while we handle your technical needs.",
         videoSrc: vid6,
-        bgClass: "from-amber-300 to-orange-400",
+        // bgClass: "from-amber-300 to-orange-400",
+          bgClass:"white border-white border-1"
       },
   ];
   
