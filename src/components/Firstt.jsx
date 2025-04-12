@@ -201,7 +201,7 @@ export default function Firstt() {
         </div>
 
         {/* 🔽 Scroll Content Section */}
-        <section className="min-h-screen w-full bg-white ">
+        <section className=" relative min-h-screen w-full bg-white ">
           <Navbar />
 
           {/* 👇 Wrapper for content under Navbar */}

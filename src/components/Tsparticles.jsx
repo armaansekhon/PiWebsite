@@ -63,7 +63,7 @@ const Tsparticles = () => {
   if (!init) return null;
 
   return (
-    <div className=" fixed inset-0 z-0 w-full h-full pointer-events-none">
+    <div className="absolute fixed inset-0 z-0 w-full h-full pointer-events-none">
       <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />
     </div>
   );
