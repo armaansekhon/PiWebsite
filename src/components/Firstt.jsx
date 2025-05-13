@@ -71,7 +71,7 @@ export default function Firstt() {
     tl.fromTo(
       svgRef.current,
       { scale: 1, transformOrigin: "center center" },
-      { scale: 33, ease: "power1.inOut" }
+      { scale: 30, ease: "power1.inOut" }
     );
 
     tl.to(
@@ -119,7 +119,7 @@ export default function Firstt() {
   }, []);
 
   return (
-    <ReactLenis root>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, normalizeScroll: true }}>
       <>
         {/* 🔳 Hero Section with ScrollTrigger */}
         <div
@@ -288,8 +288,9 @@ strategic impact of our work, turning challenges into opportunities for growth.
 
         
         
-    <ScrollT></ScrollT>
+    
        </div>
+       <ScrollT></ScrollT>
        <section className="bg-white-300 bg-cover  w-full" ><AccordionMenu></AccordionMenu></section>
         </section>
 

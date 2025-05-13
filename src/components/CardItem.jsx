@@ -3,7 +3,7 @@ import { useTransform, motion,  } from 'framer-motion';
 import { useRef } from 'react';
 import TiltedCard from './TiltCard';
 motion
-const Card = ({i, title, description,  url, color,src, alttxt, cap, progress, range, targetScale}) => {
+const Card = ({i, title, description, url , color,src, alttxt, cap, progress, range, targetScale}) => {
 
   const container = useRef(null);
   // const { scrollYProgress } = useScroll({
@@ -25,7 +25,7 @@ const Card = ({i, title, description,  url, color,src, alttxt, cap, progress, ra
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className=" relative text-black flex flex-col h-[540px] w-[1175px] rounded-[25px] p-[50px] origin-top"
+        className=" relative text-black flex flex-col h-[840px] w-full rounded-[25px] p-[50px] origin-top"
       >
        
 
@@ -61,7 +61,7 @@ const Card = ({i, title, description,  url, color,src, alttxt, cap, progress, ra
           </div>
 
           {/* Right - Image */}
-          <div className="relative w-[80%] h-full rounded-[25px] overflow-hidden">
+          <div className="relative self-center w-[70%] h-[70%] rounded-[25px] overflow-hidden">
             <motion.div
               className="w-full h-full"
               // style={{ scale: imageScale }}

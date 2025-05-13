@@ -8,28 +8,30 @@ export const projects = [
       cap:"ekjrbnferjkfbgl",
 
       link: "https://www.ignant.com/2023/03/25/ad2186-matthias-leidingers-photographic-exploration-of-awe-and-wonder/",
-      color: "#f1f1f1"
+      // color: "#f1f1f1"
+      color: "#fff"
     },
     {
       title: "Clément Chapillon",
       description: "This is a story on the borderory provokes”—so French photographer Clément Chapillon describes his latest highly captivating project Les rochers fauves (French for ‘The tawny rocks’).",
       src: "scroll6.jpeg",
       link: "https://www.ignant.com/2022/09/30/clement-chapillon-questions-geographical-and-mental-isolation-with-les-rochers-fauves/",
-      color: "#f1f1f1"
+      // color: "#f1f1f1"
+     color: "#fff"
     },
     {
       title: "Zissou",
       description: "Though he views photography as a medium for  crisp and ethereal, they’re encoded with an ambiguity—a certain tension—that lets the viewer find their own story within them.",
       src: "scroll1.jpg",
       link: "https://www.ignant.com/2023/10/28/capturing-balis-many-faces-zissou-documents-the-sacred-and-the-mundane-of-a-fragile-island/",
-      color: "#f1f1f1"
+      color: "#fff"
     },
     {
       title: "Mathias Svold and Ulrik Hasemann",
       description: "The coastlines of Denmark are documented photographers Ulrik Hasemann ongoing project investigating how humans interact with and disrupt the Danish coast.",
       src: "scroll5.jpg",
       link: "https://www.ignant.com/2019/03/13/a-photographic-series-depicting-the-uncertain-future-of-denmarks-treasured-coastlines/",
-      color: "#f1f1f1"
+     color: "#fff"
     },
     {
       title: "Mark Rammers",
