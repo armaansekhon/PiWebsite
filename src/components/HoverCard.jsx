@@ -1,10 +1,5 @@
 import React, { useRef } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import imgsrc from "../assets/staff.jpg";
 
 const ROTATION_RANGE = 30;
@@ -14,10 +9,10 @@ const TiltCard = () => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const xSpring = useSpring(x, { stiffness: 300, damping: 20 });
-  const ySpring = useSpring(y, { stiffness: 300, damping: 20 });
+  const xSpring = useSpring(x, { stiffness: 100, damping: 20 });
+  const ySpring = useSpring(y, { stiffness: 100, damping: 20 });
 
-  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+  const transform = useMotionTemplate`perspective(1000px) rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
   const handleMouseMove = (e) => {
     if (!ref.current) return;
@@ -43,23 +38,26 @@ const TiltCard = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 0.4, duration: 0.6 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.4, duration: 0.6 }}
       style={{
         transformStyle: "preserve-3d",
         transform,
         willChange: "transform",
+        perspective: "1000px",
+        backfaceVisibility: "hidden",
+        isolation: "isolate",
       }}
-      className="relative h-[26vw]   w-[45vw] rounded-xl  bg-gradient-to-br from-orange-200 to-orange-500 shadow-xl"
+      className="relative h-[26vw] w-[45vw] rounded-xl bg-gradient-to-br from-orange-200 to-orange-500 shadow-xl"
     >
-      {/* Depth Layer */}
       <motion.div
         style={{
           transform: "translateZ(60px)",
           transformStyle: "preserve-3d",
           willChange: "transform",
+          backfaceVisibility: "hidden",
         }}
-        className="absolute inset-5 bg-white rounded-xl shadow-lg flex items-center justify-center"
+        className="absolute inset-5 bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden"
       >
         <motion.img
           src={imgsrc}
@@ -68,6 +66,7 @@ const TiltCard = () => {
           style={{
             transform: "translateZ(30px)",
             willChange: "transform",
+            backfaceVisibility: "hidden",
           }}
         />
       </motion.div>
@@ -77,10 +76,10 @@ const TiltCard = () => {
 
 const Hover = () => {
   return (
-    <div className="w-full  flex items-center justify-center">
+    <div className="w-full flex items-center justify-center pointer-events-auto">
       <TiltCard />
     </div>
   );
 };
-motion
+
 export default Hover;

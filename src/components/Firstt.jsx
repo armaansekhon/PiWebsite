@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 // import bgImage from "../assets/bgboxespng.png"
 
-
 import videosrc from "../assets/p2.mp4";
 import Navbar from "./Navbar";
 import Hover from "./HoverCard";
@@ -59,8 +58,9 @@ export default function Firstt() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: outerref.current,
-        start: "top top",
+        start: "top ",
         end: "bottom+=10% top",
+
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
@@ -71,7 +71,7 @@ export default function Firstt() {
     tl.fromTo(
       svgRef.current,
       { scale: 1, transformOrigin: "center center" },
-      { scale: 30, ease: "power1.inOut" }
+      { scale: 25, ease: "power2.inOut" }
     );
 
     tl.to(
@@ -119,7 +119,7 @@ export default function Firstt() {
   }, []);
 
   return (
-    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, normalizeScroll: true }}>
+    <ReactLenis root options={{ lerp: 0.05, smooth: true, smoothWheel: true }}>
       <>
         {/* 🔳 Hero Section with ScrollTrigger */}
         <div
@@ -151,9 +151,9 @@ export default function Firstt() {
               <mask id="textmask">
                 <rect width="100%" height="100%" fill="white" />
                 <text
-                  className="font-bebas select-none text-black text-[24vw] md:text-[36vw] tracking-wider"
+                  className="font-bebas select-none text-black text-[24vw] md:text-[42vw] tracking-wider"
                   x="50%"
-                  y="40%"
+                  y="38%"
                   dominantBaseline="middle"
                   textAnchor="middle"
                   fill="black"
@@ -175,12 +175,12 @@ export default function Firstt() {
             ref={staticTextRef}
             className="absolute bottom-0 left-0 p-[5vw] text-black z-10"
           >
-            <h1 className="font-jl text-[6vw] md:text-[5vw] font-bold">
-              
-              Engineering Excellence in
+            <h1 className=" flex font-jr text-[3vw] md:text-[5.5vw] font-bold">
+              <h1 className="mr-4 text-orange-400 "> Engineering </h1>{" "}
+              Excellence in
             </h1>
-            <h3 className="font-jl text-[4vw] md:text-[3vw] font-bold">
-              Every Line of Code.
+            <h3 className=" flex font-jr text-[4vw] md:text-[3.5vw] font-bold">
+              Every Line of <h3 className="ml-2 "> Code....</h3>
             </h3>
           </div>
 
@@ -249,54 +249,48 @@ export default function Firstt() {
             {/* Marquee Component */}
             <Marquee />
           </div>
-         
-
-          
         </section>
-        <section  style={{ }} className="min-h-screen bg-white   w-full  ">
-        {/* bg-[url('/random1.jpg')] */}
-     <div>
-        <Horizontal></Horizontal>
-       </div>
-       <div>
-
-       <div className="flex justify-center mb-4">
-              <h5 className=" font-jl text-xl md:text-1xl font-semibold text-black tracking-wide">
+        <section style={{}} className="min-h-screen bg-white   w-full  ">
+          {/* bg-[url('/random1.jpg')] */}
+          <div>
+            <Horizontal></Horizontal>
+          </div>
+          <div>
+            <div className="flex justify-center mb-4">
+              <h5 className=" font-jl text-xl md:text-1xl font-semibold text-white tracking-wide">
                 Have a Glimpse at Our
               </h5>
             </div>
-            <TrueFocus 
-sentence="Latest Works"
-manualMode={false}
-blurAmount={2}
-borderColor="#00D8FF"
-animationDuration={2}
-pauseBetweenAnimations={1}
-/>
-<div className='mx-auto center w-3/4 mt-8 '>
-    <div className='font-jr text-2xl text-orange-400'> Results matter.</div>
-    
-    <div className='font-jl text-[2.5vh]'>Discover how our customized solutions have delivered measurable
-business outcomes for clients across various industries. Each case study highlights the
-strategic impact of our work, turning challenges into opportunities for growth.
+            <TrueFocus
+              sentence="Latest Works"
+              manualMode={false}
+              blurAmount={2}
+              borderColor="#00D8FF"
+              animationDuration={2}
+              pauseBetweenAnimations={1}
+            />
+            <div className="mx-auto center w-3/4 mt-8 ">
+              <div className="font-jr text-5xl text-orange-400">
+                {" "}
+                Results matter.
+              </div>
 
-</div> 
+              <div className="font-jl font-normal  mt-8 text-[2.5vh]">
+                " Discover how our customized solutions have delivered
+                measurable business outcomes for clients across various
+                industries. Each case study highlights the strategic impact of
+                our work, turning challenges into opportunities for growth.""
+              </div>
+            </div>
+          </div>
+          <ScrollT></ScrollT>
+          <section className="bg-white-300 bg-cover  w-full">
+            <AccordionMenu></AccordionMenu>
+               
 
-    
-   </div>
- 
 
-        
-        
-    
-       </div>
-       <ScrollT></ScrollT>
-       <section className="bg-white-300 bg-cover  w-full" ><AccordionMenu></AccordionMenu></section>
+          </section>
         </section>
-
-        
-  
-       
       </>
     </ReactLenis>
   );

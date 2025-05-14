@@ -1,97 +1,92 @@
-
-import { useTransform, motion,  } from 'framer-motion';
-import { useRef } from 'react';
+import { useTransform, motion, useMotionValue, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
 import TiltedCard from './TiltCard';
-motion
-const Card = ({i, title, description, url , color,src, alttxt, cap, progress, range, targetScale}) => {
 
+const Card = ({ i, title, description, src, cap, progress, range, targetScale, url }) => {
   const container = useRef(null);
-  // const { scrollYProgress } = useScroll({
-  //   target: container,
-  //   offset: ['start end', 'start start']
-  // })
-
-  // const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1])
   const scale = useTransform(progress, range, [1, targetScale]);
- 
+
+  // Mouse position
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const rect = container.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
   return (
     <div
       ref={container}
       className="h-screen flex items-center justify-center sticky top-0"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       <motion.div
         style={{
-          backgroundColor: color,
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className=" relative text-black flex flex-col h-[840px] w-full rounded-[25px] p-[50px] origin-top"
+        className="relative flex flex-col h-[690px] w-[95%] rounded-[25px] overflow-hidden"
       >
-       
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute inset-0 z-20 cursor-pointer"
+        ></a>
 
-        <div className="flex h-full mt-[0px] gap-[50px]">
-          {/* Left - Description */}
-          <div className="w-[40%] relative top-[10%]">
-             <h2 className=" mb-10 font-jr text-orange-400 text-[28px]">{title}</h2>
-            <p className="font-jl text-2xl first-letter:text-[28px] ">
-              {description}
-            </p>
-            <span className="flex items-center gap-[5px] mt-2">
-              {/* <a
-                href={url}
-                target="_blank"
-                className="text-[12px] mt-4 underline cursor-pointer"
-              >
-                See more
-              </a> */}
-              <svg
-                width="22"
-                height="12"
-                
-                viewBox="0 0 22 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21.5303 6.53033C21.8232 6.23744 21.8232 5.76256 21.5303 5.46967L16.7574 0.696699C16.4645 0.403806 15.9896 0.403806 15.6967 0.696699C15.4038 0.989592 15.4038 1.46447 15.6967 1.75736L19.9393 6L15.6967 10.2426C15.4038 10.5355 15.4038 11.0104 15.6967 11.3033C15.9896 11.5962 16.4645 11.5962 16.7574 11.3033L21.5303 6.53033ZM0 6.75L21 6.75V5.25L0 5.25L0 6.75Z"
-                  fill="black"
-                />
-              </svg>
-            </span>
-          </div>
-
-          {/* Right - Image */}
-          <div className="relative self-center w-[70%] h-[70%] rounded-[25px] overflow-hidden">
-            <motion.div
-              className="w-full h-full"
-              // style={{ scale: imageScale }}
-            >
-              <TiltedCard
-  imageSrc={src}
-  altText={alttxt}
-  captionText={cap}
-  containerHeight="700px"
-  containerWidth="900px"
-  imageHeight="700px"
-  imageWidth="900px"
-  rotateAmplitude={12}
-  scaleOnHover={1.2}
-  showMobileWarning={false}
-  showTooltip={true}
-  displayOverlayContent={true}
-  overlayContent={
-    <p className="tilted-card-demo-text">
-      
-    </p>
-  }
-/>
- 
-            </motion.div>
-          </div>
+        {/* Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <TiltedCard
+            imageSrc={src}
+            altText="Background"
+            captionText={cap}
+            containerHeight="100%"
+            containerWidth="100%"
+            imageHeight="100%"
+            imageWidth="100%"
+            rotateAmplitude={12}
+            scaleOnHover={1.1}
+            showMobileWarning={false}
+            showTooltip={false}
+            displayOverlayContent={false}
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-center h-full p-10 text-white pointer-events-none">
+          <h2 className="mb-10 font-jB  text-[#fff] text-[6rem]">{title}</h2>
+          <p className="font-jl text-3xl first-letter:text-[28px]">{description}</p>
+        </div>
+
+        {/* Floating Tooltip */}
+        <AnimatePresence>
+          {isHovering && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              style={{
+                left: mouseX,
+                top: mouseY,
+                translateX: '-50%',
+                translateY: '-120%',
+              }}
+              className="fixed z-30 bg-black text-white text-sm px-3 py-1 rounded-lg pointer-events-none shadow-lg"
+            >
+              {url}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </div>
   );
 };
 
-export default Card
+export default Card;
