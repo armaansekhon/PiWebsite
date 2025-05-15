@@ -2,7 +2,7 @@ import { projects } from '../assets/data';
 import Card from './CardItem';
 import { useScroll } from 'framer-motion';
 import { useRef } from 'react';
-import Tsparticles from './Tsparticles';
+// import Tsparticles from './Tsparticles';
 
 export default function ScrollT() {
   const container = useRef(null);
@@ -15,9 +15,7 @@ export default function ScrollT() {
   return (
     <main ref={container} className="min-h-[300vh] mt-16 bg-white relative">
       {/* Container for Tsparticles, scoped to ScrollT */}
-      <div className="absolute fixed inset-0 z-[-1] w-full h-full pointer-events-none">
-        <Tsparticles />
-      </div>
+     
 
       {projects.map((project, i) => {
         const targetScale = 1 - (projects.length - i) * 0.05;

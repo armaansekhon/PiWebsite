@@ -47,8 +47,8 @@ export default function AccordionMenu() {
      
      
      <div className=" flex flex-col items-center justify-center mb-4">
-       <h5 className=" font-jSB text-[7vh] md:text-1xl font-semibold text-black tracking-wider">
-       You Might Be Wondering…
+       <h5 className=" flex font-jSB text-[7vh] md:text-1xl font-semibold text-black tracking-wider">
+       You Might Be  <h5 className= "ml-2 text-orange-400">Wondering…</h5>
        </h5>
        
        {/* <h5 className=" font-jSB text-[5vh] md:text-1xl font-semibold text-orange-400 tracking-wider">

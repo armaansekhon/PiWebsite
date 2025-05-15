@@ -29,16 +29,16 @@ const Horizontal = () => {
          Our Pisoft Dynamic
          </h5>
          <h5 className=" font-jSB text-[5vh] md:text-1xl font-semibold text-orange-400 tracking-wider">
-     services
+     Services
          </h5>
          
        </div>
+         
+      <HorizontalScrollCarousel />
      
 
      </div>
-     
-      <HorizontalScrollCarousel />
-     
+ 
     </div>
   );
 };

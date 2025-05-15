@@ -3,6 +3,7 @@ import { ReactLenis } from "lenis/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import RollingGallerys from "./RollingGalary";
 // import bgImage from "../assets/bgboxespng.png"
 
 import videosrc from "../assets/p2.mp4";
@@ -15,6 +16,8 @@ import ServiceList from "./ServiceCard";
 import AccordionMenu from "./ServiceCard";
 import ScrollT from "./Page";
 import TrueFocus from "./FocusText";
+import InteractiveImageGrid from "./ScrollableImg";
+import TestimonialSection from "./TestimonalSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,7 +74,7 @@ export default function Firstt() {
     tl.fromTo(
       svgRef.current,
       { scale: 1, transformOrigin: "center center" },
-      { scale: 25, ease: "power2.inOut" }
+      { scale: 28, ease: "power2.inOut" }
     );
 
     tl.to(
@@ -151,7 +154,7 @@ export default function Firstt() {
               <mask id="textmask">
                 <rect width="100%" height="100%" fill="white" />
                 <text
-                  className="font-bebas select-none text-black text-[24vw] md:text-[42vw] tracking-wider"
+                  className="font-bebas select-none text-black text-[24vw] md:text-[38vw] tracking-wider"
                   x="50%"
                   y="38%"
                   dominantBaseline="middle"
@@ -285,8 +288,10 @@ export default function Firstt() {
           </div>
           <ScrollT></ScrollT>
           <section className="bg-white-300 bg-cover  w-full">
+              <TestimonialSection></TestimonialSection>
             <AccordionMenu></AccordionMenu>
-               
+            
+          
 
 
           </section>

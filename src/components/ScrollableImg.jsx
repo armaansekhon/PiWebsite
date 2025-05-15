@@ -131,7 +131,7 @@ const InteractiveImageGrid = () => {
     {/* Centered Text Overlay */}
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div className="text-center">
-        <h1 className="text-7xl font-jl  text-orange-400 mb-4">PISOFT</h1>
+        <h1 className="text-6xl font-jSB  text-orange-400 mb-4">PISOFT</h1>
         <div className="text-sm text-gray-300">SEE THE CASE STUDY</div>
       </div>
     </div>
