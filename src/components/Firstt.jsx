@@ -18,6 +18,7 @@ import ScrollT from "./Page";
 import TrueFocus from "./FocusText";
 import InteractiveImageGrid from "./ScrollableImg";
 import TestimonialSection from "./TestimonalSection";
+import SwipableCardCarousel from "./SwipableCardCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -253,8 +254,10 @@ export default function Firstt() {
             <Marquee />
           </div>
         </section>
-        <section style={{}} className="min-h-screen bg-white   w-full  ">
-          {/* bg-[url('/random1.jpg')] */}
+        <section style={{}} className="min-h-screen  w-full  ">
+          {/* bg-[url('/random1.jpg')]
+           */}
+           
           <div>
             <Horizontal></Horizontal>
           </div>
@@ -287,12 +290,25 @@ export default function Firstt() {
             </div>
           </div>
           <ScrollT></ScrollT>
-          <section className="bg-white-300 bg-cover  w-full">
-              <TestimonialSection></TestimonialSection>
+         <section
+  className="bg-cover  bg-center min-h-screen pb-10 bg-no-repeat"
+  style={{ backgroundImage: "url('/testbg.png')" }}
+>
+  <RollingGallerys />
+</section>
+         
+                  <section className="bg-white-300  bg-cover  w-full">
+              {/* <TestimonialSection></TestimonialSection> */}
             <AccordionMenu></AccordionMenu>
+
+           
             
           
 
+
+          </section>
+          <section className="bg-white-300 min-h-screen  bg-cover  w-full"> 
+             <SwipableCardCarousel></SwipableCardCarousel>
 
           </section>
         </section>

@@ -1,123 +1,221 @@
-import { useEffect, useState } from "react";
-import { motion, useMotionValue, useAnimation, useTransform } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import {
+  motion,
+  useMotionValue,
+  useAnimation,
+  useTransform,
+} from "framer-motion";
+import BlurText from "./BlurText";
 
-const TESTIMONIALS = [
+const VIDEO_TESTIMONIALS = [
   {
-    name: "John Doe",
-    message: "This company transformed our business with their innovative solutions. Highly recommend!",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    thumbnail: "/random.jpg",
   },
   {
-    name: "Jane Smith",
-    message: "Amazing experience from start to finish. Their team is professional and attentive.",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    src: "https://www.w3schools.com/html/movie.mp4",
+    thumbnail: "/random1.jpg",
   },
   {
-    name: "Michael Johnson",
-    message: "Our go-to partner for digital solutions. Results exceeded our expectations.",
-    image: "https://randomuser.me/api/portraits/men/65.jpg",
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    thumbnail: "scroll2.jpg",
   },
   {
-    name: "Emily Davis",
-    message: "Top-notch service and support. We saw immediate improvements in our operations.",
-    image: "https://randomuser.me/api/portraits/women/33.jpg",
+    src: "https://www.w3schools.com/html/movie.mp4",
+    thumbnail: "/video-thumb4.jpg",
+  },
+  {
+    src: "https://www.w3schools.com/html/mov_bbb.mp4",
+    thumbnail: "/video-thumb5.jpg",
+  },
+  {
+    src: "https://www.w3schools.com/html/movie.mp4",
+    thumbnail: "/video-thumb6.jpg",
   },
 ];
 
-const RollingGallery = ({ autoplay = true, pauseOnHover = true, testimonials = [] }) => {
-  testimonials = testimonials.length > 0 ? testimonials : TESTIMONIALS;
+const TEXT_TESTIMONIALS = [
+  {
+    content: "This service completely transformed our workflow. Highly recommended!",
+    name: "Jane Doe",
+    designation: "Product Manager, Acme Inc.",
+    profilePic: "/random.jpg",
+  },
+  {
+    content: "Outstanding support and amazing UX. Will continue using it for years!",
+    name: "John Smith",
+    designation: "CTO, Beta Corp",
+    profilePic: "/profile2.jpg",
+  },
+  {
+    content: "The level of polish and attention to detail is unmatched.",
+    name: "Aisha Khan",
+    designation: "CEO, Gamma Ltd.",
+    profilePic: "/profile3.jpg",
+  },
+];
 
-  const [isScreenSizeSm, setIsScreenSizeSm] = useState(window.innerWidth <= 640);
+const interleaveTestimonials = () => {
+  const items = [];
+  let textIndex = 0;
+  for (let i = 0; i < VIDEO_TESTIMONIALS.length; i++) {
+    items.push({ type: "video", ...VIDEO_TESTIMONIALS[i] });
+    if ((i + 1) % 3 === 0 && textIndex < TEXT_TESTIMONIALS.length) {
+      items.push({ type: "text", ...TEXT_TESTIMONIALS[textIndex++] });
+    }
+  }
+  return items;
+};
+
+const RollingGallery = () => {
+  const testimonials = interleaveTestimonials();
+  const faceCount = testimonials.length;
+
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   useEffect(() => {
-    const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const resize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const cylinderWidth = isScreenSizeSm ? 1000 : 1600;
-  const faceCount = testimonials.length;
-  const faceWidth = cylinderWidth / faceCount;
+  const faceWidth = screenWidth / 2.9 / 1.8;
+  const faceHeight = 350;
+  const cylinderWidth = faceWidth * faceCount;
   const radius = cylinderWidth / (2 * Math.PI);
 
-  const dragFactor = 0.05;
   const rotation = useMotionValue(0);
   const controls = useAnimation();
   const transform = useTransform(rotation, (val) => `rotate3d(0,1,0,${val}deg)`);
 
-  const startInfiniteSpin = (startAngle) => {
-    controls.start({
-      rotateY: [startAngle, startAngle - 360],
-      transition: { duration: 30, ease: "linear", repeat: Infinity },
-    });
-  };
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
+  // Throttle rotation
   useEffect(() => {
-    if (autoplay) startInfiniteSpin(rotation.get());
-    else controls.stop();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [autoplay]);
+    let animationFrameId;
+    let lastUpdate = performance.now();
 
+    const animate = (now) => {
+      const delta = now - lastUpdate;
+      if (!isPaused && !isHovered && delta > 30) {
+        rotation.set(rotation.get() + 0.2);
+        lastUpdate = now;
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPaused, isHovered]);
+
+  const dragFactor = 0.04;
   const handleUpdate = (latest) => {
-    if (typeof latest.rotateY === "number") rotation.set(latest.rotateY);
+    if (typeof latest.rotateY === "number") {
+      rotation.set(latest.rotateY);
+    }
   };
 
   const handleDrag = (_, info) => {
+    setIsPaused(true);
     controls.stop();
     rotation.set(rotation.get() + info.offset.x * dragFactor);
   };
 
   const handleDragEnd = (_, info) => {
-    const finalAngle = rotation.get() + info.velocity.x * dragFactor;
-    rotation.set(finalAngle);
-    if (autoplay) startInfiniteSpin(finalAngle);
-  };
-
-  const handleMouseEnter = () => {
-    if (autoplay && pauseOnHover) controls.stop();
-  };
-
-  const handleMouseLeave = () => {
-    if (autoplay && pauseOnHover) startInfiniteSpin(rotation.get());
+    rotation.set(rotation.get() + info.velocity.x * dragFactor);
+    setIsPaused(false);
   };
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-900 py-20">
-      <h2 className="text-center text-5xl font-extrabold text-white mb-12">Testimonials</h2>
-      <div
-        className="flex h-[500px] items-center justify-center [perspective:1200px] [transform-style:preserve-3d]"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+    <div className="relative h-screen mb-20 w-full overflow-hidden">
+      <div className="flex flex-col pl-20 justify-center mt-10">
+        <BlurText
+          text="Testimonials"
+          delay={250}
+          animateBy="words"
+          direction="top"
+          className="text-6xl font-jSB text-white"
+        />
+        <BlurText
+          text="See the Impact We've Made...."
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-3xl  font-jl mt-3 text-black text-center mb-2"
+        />
+      </div>
+
+      <div className="flex h-full items-center justify-center [perspective:1000px]">
         <motion.div
           drag="x"
-          dragElastic={0}
+          dragElastic={0.2}
           onDrag={handleDrag}
           onDragEnd={handleDragEnd}
           animate={controls}
           onUpdate={handleUpdate}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           style={{
             transform: transform,
             rotateY: rotation,
             width: cylinderWidth,
             transformStyle: "preserve-3d",
+            willChange: "transform", // optimization
           }}
-          className="flex min-h-[300px] cursor-grab items-center justify-center [transform-style:preserve-3d]"
+          className="flex cursor-grab pb-20 items-center justify-center"
         >
-          {testimonials.map((testimonial, i) => (
+          {testimonials.map((item, i) => (
             <div
               key={i}
-              className="group absolute flex h-[300px] w-[300px] flex-col items-center justify-center rounded-2xl bg-white p-6 text-center shadow-2xl [backface-visibility:hidden] hover:scale-105 transition-transform duration-300"
+              className="group absolute flex h-fit items-center justify-center p-4 [backface-visibility:hidden]"
               style={{
+                width: `${faceWidth}px`,
+                height: `${faceHeight}px`,
                 transform: `rotateY(${(360 / faceCount) * i}deg) translateZ(${radius}px)`,
               }}
             >
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="mb-4 h-16 w-16 rounded-full object-cover border-4 border-gray-200"
-              />
-              <p className="text-sm font-medium text-gray-700 mb-2 line-clamp-4">"{testimonial.message}"</p>
-              <h4 className="text-md font-bold text-gray-900">{testimonial.name}</h4>
+              {item.type === "video" ? (
+                <div className="relative w-full h-full rounded-xl overflow-hidden border-2 border-gray-200 shadow-lg">
+                  <img
+                    src={item.thumbnail}
+                    alt="Video thumbnail"
+                    className="absolute w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+                  />
+                  <video
+                    src={item.src}
+                    muted
+                    loop
+                    autoPlay
+                    playsInline
+                    className="absolute w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </div>
+              ) : (
+                <div className="bg-white rounded-xl p-6 shadow-lg flex flex-col items-center text-center h-full w-full">
+                  <img
+                    src={item.profilePic}
+                    className="w-20 h-20 rounded-full mb-4 object-cover"
+                    alt="Profile"
+                  />
+                  <div className="font-SB text-gray-900 text-lg">{item.name}</div>
+                  <div className="text-sm font-jl text-gray-700 mb-2">{item.designation}</div>
+                  <div className="flex mb-4">
+                    {Array(5)
+                      .fill(0)
+                      .map((_, idx) => (
+                        <svg
+                          key={idx}
+                          className="w-5 h-5 text-yellow-400"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.39 2.462a1 1 0 00-.364 1.118l1.286 3.966c.3.922-.755 1.688-1.54 1.118l-3.39-2.463a1 1 0 00-1.176 0l-3.39 2.463c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.45 9.394c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.967z" />
+                        </svg>
+                      ))}
+                  </div>
+                  <p className="text-gray-700 font-jl text-base">“{item.content}”</p>
+                </div>
+              )}
             </div>
           ))}
         </motion.div>

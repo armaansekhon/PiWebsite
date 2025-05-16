@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
+import BlurText from './BlurText';
 
 const TestimonialSection = () =>
   
@@ -106,10 +107,26 @@ const TestimonialSection = () =>
 
   return (
     <div className="bg-white h-screen py-18">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-jl text-gray-900 text-center mb-4">Hear from Our Valuable Clients</h2>
-        <p className="text-center text-7xl  font-jSB text-orange-400 mb-22">Testimonials...</p>
 
+ 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <BlurText
+  text="Hear from Our Valuable Clients"
+  delay={150}
+  animateBy="words"
+  direction="top"
+  
+  className="text-2xl  font-jl text-gray-900 text-center mb-4"
+/>
+        
+ <BlurText
+  text="Testimonials..."
+  delay={250}
+  animateBy="words"
+  direction="top"
+  
+  className="text-center text-6xl  font-jSB text-orange-400 mb-22"
+/>
    
 
 <Swiper

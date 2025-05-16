@@ -7,6 +7,7 @@ import vid3 from "../assets/web.mp4"
 import vid4 from "../assets/mobile.mp4"
 import vid5 from "../assets/DM.mp4"
 import vid6 from "../assets/TC.mp4"
+import BlurText from "./BlurText";
 
 
 motion
@@ -14,23 +15,46 @@ const Horizontal = () => {
   return (
     <div className=" bg-url   ">
         <div className="flex justify-center mb-4">
-         <h5 className=" font-jl text-[3vh] md:text-1xl font-semibold text-black tracking-wider">
-         First impressions matter more than ever
-         </h5>
+        
+
+      <BlurText
+  text=" First impressions matter more than ever"
+  delay={150}
+  animateBy="words"
+  direction="top"
+  
+  className="font-jl text-[3vh] md:text-1xl font-semibold text-black tracking-wider"
+/>
        </div>
        <div className=" text Cont justify-center items-center ">
+        
      
      
-       <div className=" flex flex-col items-center justify-center mb-4">
-         <h5 className=" font-jSB text-[5vh] md:text-1xl font-semibold text-black tracking-wider">
-         Invest in good Solutions,with
-         </h5>
-         <h5 className=" font-jSB text-[5vh] md:text-1xl font-semibold text-black tracking-wider">
-         Our Pisoft Dynamic
-         </h5>
-         <h5 className=" font-jSB text-[5vh] md:text-1xl font-semibold text-orange-400 tracking-wider">
-     Services
-         </h5>
+       <div className=" flex flex-col items-center justify-center mb-6">
+        <BlurText
+  text="   Invest in good Solutions,with"
+  delay={100}
+  animateBy="words"
+  direction="top"
+  
+  className=" font-jSB text-[5vh] md:text-1xl font-semibold text-black tracking-wider"
+/>
+         
+          <BlurText
+  text="   Our Pisoft Dynamic"
+  delay={100}
+  animateBy="words"
+  direction="top"
+className=" font-jSB text-[5vh] md:text-1xl font-semibold text-black tracking-wider"
+/>
+<BlurText
+  text=" Services"
+  delay={100}
+  animateBy="words"
+  direction="top"
+className=" font-jSB text-[5vh] md:text-1xl font-semibold text-orange-400 tracking-wider"
+/>
+         
          
        </div>
          
