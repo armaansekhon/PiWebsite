@@ -296,6 +296,11 @@ export default function Firstt() {
 >
   <RollingGallerys />
 </section>
+
+ <section className="bg-white-300 min-h-screen mt-5 bg-cover  w-full"> 
+             <SwipableCardCarousel></SwipableCardCarousel>
+
+          </section>
          
                   <section className="bg-white-300  bg-cover  w-full">
               {/* <TestimonialSection></TestimonialSection> */}
@@ -307,10 +312,7 @@ export default function Firstt() {
 
 
           </section>
-          <section className="bg-white-300 min-h-screen  bg-cover  w-full"> 
-             <SwipableCardCarousel></SwipableCardCarousel>
-
-          </section>
+         
         </section>
       </>
     </ReactLenis>
