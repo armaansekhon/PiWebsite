@@ -19,6 +19,7 @@ import TrueFocus from "./FocusText";
 import InteractiveImageGrid from "./ScrollableImg";
 import TestimonialSection from "./TestimonalSection";
 import SwipableCardCarousel from "./SwipableCardCarousel";
+import Footer from "./Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -297,14 +298,18 @@ export default function Firstt() {
   <RollingGallerys />
 </section>
 
- <section className="bg-white-300 min-h-screen mt-5 bg-cover  w-full"> 
-             <SwipableCardCarousel></SwipableCardCarousel>
 
-          </section>
          
                   <section className="bg-white-300  bg-cover  w-full">
               {/* <TestimonialSection></TestimonialSection> */}
             <AccordionMenu></AccordionMenu>
+
+             <section className="bg-white-300 min-h-screen mt-5 bg-cover  w-full"> 
+             <SwipableCardCarousel></SwipableCardCarousel>
+
+          </section>
+
+  
 
            
             
@@ -312,7 +317,8 @@ export default function Firstt() {
 
 
           </section>
-         
+          <section className=" min-h-full"> <Footer></Footer></section>
+                
         </section>
       </>
     </ReactLenis>
