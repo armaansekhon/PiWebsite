@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef,useState } from "react";
 import { ReactLenis } from "lenis/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import RollingGallerys from "./RollingGalary";
 // import bgImage from "../assets/bgboxespng.png"
+import { Example } from "./Corn";
+import { Menu } from "lucide-react";
 
 import videosrc from "../assets/p2.mp4";
 import Navbar from "./Navbar";
@@ -29,6 +31,10 @@ export default function Firstt() {
   const staticTextRef = useRef(null);
   const triggerRef = useRef(null);
   const vnavRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
 
   const text =
     "Pisoft Informatics is an outsourced software development company specializing in custom product development, legacy platform modernization, and data-driven eCommerce solutions.";
@@ -131,6 +137,9 @@ export default function Firstt() {
           ref={outerref}
           className="relative min-h-screen w-full flex justify-center overflow-hidden"
         >
+             <div className=" z-100 left-0    top-12 absolute">
+      <Navbar />
+    </div>
           {/* 🎥 Background Video */}
           <div className="video absolute top-0 left-0 w-full h-full z-[-1]">
             <video
@@ -207,7 +216,35 @@ export default function Firstt() {
 
         {/* 🔽 Scroll Content Section */}
         <section className=" relative min-h-screen w-full bg-white ">
-          <Navbar />
+          {/* ✅ Sticky Navbar */}
+ 
+
+
+  {/* hamburger*/}
+
+    <div>
+        
+
+        {/* Push content to the right */}
+        <div className="ml-auto fixed  top-10 right-0  z-100 flex items-center space-x-4">
+          {/* Desktop Menu */}
+          {/* <SlideTabsExample /> */}
+
+          {/* Right-Aligned Component */}
+          <Example />
+
+          {/* Mobile Menu Icon */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-gray-700 focus:outline-none"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+   
 
           {/* 👇 Wrapper for content under Navbar */}
           <div className="flex flex-col md:flex-row justify-between  items-start px-[5vw] pt-[5vw] gap-[4vw]">
@@ -304,7 +341,7 @@ export default function Firstt() {
               {/* <TestimonialSection></TestimonialSection> */}
             <AccordionMenu></AccordionMenu>
 
-             <section className="bg-white-300 min-h-screen mt-5 bg-cover  w-full"> 
+             <section className="bg-white-300 min-h-screen  overflow-hidden mt-5 bg-cover  w-full"> 
              <SwipableCardCarousel></SwipableCardCarousel>
 
           </section>
@@ -317,7 +354,7 @@ export default function Firstt() {
 
 
           </section>
-          <section className=" min-h-full"> <Footer></Footer></section>
+          <section className=" min-h-full overflow-hidden  pb-1"> <Footer></Footer></section>
                 
         </section>
       </>

@@ -54,7 +54,7 @@ const Tab = ({ children, setPosition }) => {
           opacity: 1,
         });
       }}
-      className=" font-jmed uppercase  relative z-10 block cursor-pointer px-3 py-1.5 text-xs  text-white mix-blend-difference md:px-5 md:py-3 md:text-base"
+      className=" font-jmed uppercase hover:text-white  relative z-10 block cursor-pointer px-3 py-1.5 text-xs  text-black mix-blend-difference md:px-5 md:py-3 md:text-base"
     >
       {children}
     </li>

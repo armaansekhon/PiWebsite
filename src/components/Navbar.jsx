@@ -10,7 +10,7 @@ const Navbar = ({ isVisible }) => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className={`bg-white h-15 mt-4 pt-4 top-0 flex left-0 w-full transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+    <nav className={`bg-transparent h-15 mt-4 pt-4 top-0 flex left-0 w-full transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="   py-3 flex ">
         {/* Logo */}
         <img className="h-12 ml-20 w-auto" src={imgscr}></img>
@@ -24,9 +24,9 @@ const Navbar = ({ isVisible }) => {
           <a href="#home" className=" font-med text-xl   hover:text-blue-600 transition">Contact Us</a>
          
         </div> */}
-        <SlideTabsExample ></SlideTabsExample>
+        {/* <SlideTabsExample ></SlideTabsExample> */}
 
-        <div className ><Example></Example></div>
+        {/* <div className="ml-auto" ><Example></Example></div> */}
       
         
 
