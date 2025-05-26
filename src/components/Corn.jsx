@@ -110,28 +110,28 @@ export const Example = () => {
             className="w-1/2 flex flex-col items-center justify-center gap-10 font-jl text-5xl"
           >
             <a
-              href="#home"
+              href="/"
               onMouseEnter={() => setBgImage(imageMap.home)}
               className="hover:text-blue-400 transition"
             >
               Home
             </a>
             <a
-              href="#about"
+              href="/about"
               onMouseEnter={() => setBgImage(imageMap.about)}
               className="hover:text-blue-400 transition"
             >
               About
             </a>
             <a
-              href="#services"
+              href="/services"
               onMouseEnter={() => setBgImage(imageMap.services)}
               className="hover:text-blue-400 transition"
             >
               Services
             </a>
             <a
-              href="#contact"
+              href="/contact"
               onMouseEnter={() => setBgImage(imageMap.contact)}
               className="hover:text-blue-400 transition"
             >
