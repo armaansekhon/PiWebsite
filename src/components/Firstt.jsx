@@ -222,17 +222,15 @@ export default function Firstt() {
  
 
 
-  {/* hamburger*/}
+
 
     <div>
         
 
-        {/* Push content to the right */}
+         {/* hamburger*/}
         <div className="ml-auto fixed  top-8 right-0  z-100 flex items-center space-x-4">
-          {/* Desktop Menu */}
-          {/* <SlideTabsExample /> */}
+       
 
-          {/* Right-Aligned Component */}
           <Example />
 
           {/* Mobile Menu Icon */}

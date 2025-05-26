@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Menu, X } from "lucide-react";
 import imgscr from "../assets/latestLogoP.png"
 import { SlideTabsExample } from "./SlideTabs";
@@ -7,13 +7,13 @@ import { Example } from "./Corn";
 const Navbar = ({ isVisible }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  // const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <nav className={`bg-transparent h-15 mt-4 pt-4 top-0 flex left-0 w-full transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="   py-3 flex ">
         {/* Logo */}
-        <img className="h-12 ml-20 w-auto" src={imgscr}></img>
+        <img className="h-12 ml-6 w-auto" src={imgscr}></img>
 
         {/* Desktop Nav
         <div className="hidden  md:flex ml-54  space-x-8    text-black">
@@ -30,12 +30,7 @@ const Navbar = ({ isVisible }) => {
       
         
 
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+     
       </div>
        
 
