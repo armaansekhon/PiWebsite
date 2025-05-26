@@ -15,7 +15,7 @@ const TestimonialSection = () =>
       name: "Mark T",
       role: "Host of 'Tech Talks'",
       quote: "This platform transformed my podcasting journey with its intuitive tools and outstanding support!",
-      thumbnail: "https://via.placeholder.com/300x200?text=Thumbnail",
+      thumbnail: "feedback1.png",
       video: "https://www.w3schools.com/html/mov_bbb.mp4",
       isVideo: true
     },
