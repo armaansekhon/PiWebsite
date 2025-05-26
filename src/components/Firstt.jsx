@@ -1,5 +1,5 @@
 import React, { useRef,useState } from "react";
-import { ReactLenis } from "lenis/react";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -131,7 +131,8 @@ export default function Firstt() {
   }, []);
 
   return (
-    <ReactLenis root options={{ lerp: 0.05, smooth: true, smoothWheel: true }}>
+    <div>
+
       <>
         {/* 🔳 Hero Section with ScrollTrigger */}
         <div
@@ -360,6 +361,7 @@ export default function Firstt() {
                 
         </section>
       </>
-    </ReactLenis>
+  
+    </div>
   );
 }

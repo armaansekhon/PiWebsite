@@ -12,12 +12,12 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@heroicons/react": "^2.2.0",
+    "@studio-freight/react-lenis": "^0.0.47",
     "@tailwindcss/vite": "^4.1.0",
     "@tsparticles/react": "^3.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.6.3",
     "gsap": "^3.12.7",
-    "lenis": "^1.2.3",
     "lucide-react": "^0.487.0",
     "motion": "^12.6.3",
     "ogl": "^1.0.11",
