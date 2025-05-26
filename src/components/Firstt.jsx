@@ -23,6 +23,7 @@ import TestimonialSection from "./TestimonalSection";
 import SwipableCardCarousel from "./SwipableCardCarousel";
 import Footer from "./Footer";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Firstt() {
@@ -137,7 +138,7 @@ export default function Firstt() {
           ref={outerref}
           className="relative min-h-screen w-full flex justify-center overflow-hidden"
         >
-             <div className=" z-100 left-0    top-12 absolute">
+             <div className=" z-100 left-[0]   top-12 absolute">
       <Navbar />
     </div>
           {/* 🎥 Background Video */}
@@ -226,7 +227,7 @@ export default function Firstt() {
         
 
         {/* Push content to the right */}
-        <div className="ml-auto fixed  top-10 right-0  z-100 flex items-center space-x-4">
+        <div className="ml-auto fixed  top-8 right-0  z-100 flex items-center space-x-4">
           {/* Desktop Menu */}
           {/* <SlideTabsExample /> */}
 
@@ -343,6 +344,7 @@ export default function Firstt() {
 
              <section className="bg-white-300 min-h-screen  overflow-hidden mt-5 bg-cover  w-full"> 
              <SwipableCardCarousel></SwipableCardCarousel>
+             
 
           </section>
 

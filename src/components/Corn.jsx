@@ -4,10 +4,19 @@ import { MotionConfig, motion } from "framer-motion";
 
 export const Example = () => {
   const [active, setActive] = useState(false);
+  const [bgImage, setBgImage] = useState("/images/default.jpg");
+
   const overlayRef = useRef();
   const leftRef = useRef();
   const rightRef = useRef();
   const tlRef = useRef();
+
+  const imageMap = {
+    home: "/office.jpeg",
+    about: "/office2.jpeg",
+    services: "/images/services.jpg",
+    contact: "/images/contact.jpg",
+  };
 
   useEffect(() => {
     const tl = gsap.timeline({ paused: true });
@@ -61,22 +70,73 @@ export const Example = () => {
           {/* Branding - Left side */}
           <div
             ref={leftRef}
-            className="w-1/2 flex items-center justify-center"
+            className="w-[75%] flex flex-col justify-center px-10 relative overflow-hidden"
+            style={{
+              backgroundImage: `url(${bgImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
-            <h1 className="text-7xl md:text-9xl font-bold tracking-wide text-white">
-              PiSoft
-            </h1>
+            <div className="relative z-10">
+              <h1 className="text-7xl md:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
+                PiSoft
+              </h1>
+              <h1 className="text-7xl md:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
+                Informatics
+              </h1>
+              <h3 className="mt-10 text-3xl md:text-5xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
+                Contact
+              </h3>
+              <div className="text-2xl md:text-2xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
+                <p className="text-[3vh]">Plot No C-86, Pannu Tower</p>
+                <p className="text-[3vh]">
+                  2nd Floor, Phase 7, Industrial area,
+                </p>
+                <p className="text-[3vh]">
+                  Mohali (Punjab) opp. Cheema Boiler India.
+                </p>
+                <p className="mt-4 text-[3vh]">
+                  Email: info@youritcompany.com
+                </p>
+                <p className="text-[3vh]">Phone: +918288029930</p>
+              </div>
+            </div>
+            <div className="absolute inset-0 bg-black opacity-60 z-0" />
           </div>
 
           {/* Nav Links - Right side */}
           <div
             ref={rightRef}
-            className="w-1/2 flex flex-col items-center justify-center gap-10 text-3xl font-medium"
+            className="w-1/2 flex flex-col items-center justify-center gap-10 font-jl text-5xl"
           >
-            <a href="#home" className="hover:text-blue-400 transition">Home</a>
-            <a href="#about" className="hover:text-blue-400 transition">About</a>
-            <a href="#services" className="hover:text-blue-400 transition">Services</a>
-            <a href="#contact" className="hover:text-blue-400 transition">Contact</a>
+            <a
+              href="#home"
+              onMouseEnter={() => setBgImage(imageMap.home)}
+              className="hover:text-blue-400 transition"
+            >
+              Home
+            </a>
+            <a
+              href="#about"
+              onMouseEnter={() => setBgImage(imageMap.about)}
+              className="hover:text-blue-400 transition"
+            >
+              About
+            </a>
+            <a
+              href="#services"
+              onMouseEnter={() => setBgImage(imageMap.services)}
+              className="hover:text-blue-400 transition"
+            >
+              Services
+            </a>
+            <a
+              href="#contact"
+              onMouseEnter={() => setBgImage(imageMap.contact)}
+              className="hover:text-blue-400 transition"
+            >
+              Contact
+            </a>
           </div>
         </div>
       </div>
@@ -98,7 +158,7 @@ const AnimatedHamburgerButton = ({ active, setActive }) => {
         onClick={() => setActive((pv) => !pv)}
         className="relative h-10 w-12 rounded-full bg-white/0 transition-colors hover:bg-white/20"
       >
-          <motion.span
+        <motion.span
           variants={VARIANTS.top}
           className="absolute h-1 w-8 bg-black"
           style={{ y: "-50%", left: "50%", x: "-50%", top: "35%" }}
@@ -155,7 +215,3 @@ const VARIANTS = {
     },
   },
 };
-
-
-
-
