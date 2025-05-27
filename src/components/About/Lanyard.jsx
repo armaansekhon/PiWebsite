@@ -15,7 +15,7 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true }) {
   return (
-<div className="fixed right-0 top-0 h-screen w-[40%] flex scale-130 items-center justify-end pointer-events-none z-10">
+<div className="fixed right-10 top-0 h-[750px] w-[40%]  flex scale-130 items-center justify-end pointer-events-none z-10">
 
       <Canvas
         camera={{ position: position, fov: fov }}

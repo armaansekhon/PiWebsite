@@ -78,7 +78,7 @@ const RollingGallery = () => {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const faceWidth = screenWidth / 2.9 / 1.8;
+  const faceWidth = screenWidth / 2.9 / 1.5;
   const faceHeight = 350;
   const cylinderWidth = faceWidth * faceCount;
   const radius = cylinderWidth / (2 * Math.PI);
