@@ -10,15 +10,15 @@ import BlurText from "./BlurText";
 const VIDEO_TESTIMONIALS = [
   {
     src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    thumbnail: "/feedback1.png",
+    thumbnail: "/feedback4.png",
   },
   {
     src: "https://www.w3schools.com/html/movie.mp4",
-    thumbnail: "/feedback1.png",
+    thumbnail: "/feedback4.png",
   },
   {
     src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    thumbnail: "/feedback1.png",
+    thumbnail: "/feedback4.png",
   },
   {
     src: "https://www.w3schools.com/html/movie.mp4",
@@ -79,6 +79,7 @@ const RollingGallery = () => {
   }, []);
 
   const faceWidth = screenWidth / 2.9 / 1.5;
+  console.log(faceWidth);
   const faceHeight = 350;
   const cylinderWidth = faceWidth * faceCount;
   const radius = cylinderWidth / (2 * Math.PI);

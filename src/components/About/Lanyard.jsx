@@ -15,12 +15,13 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true }) {
   return (
-<div className="fixed right-10 top-0 h-[750px] w-[40%]  flex scale-130 items-center justify-end pointer-events-none z-10">
+<div className="fixed right-10 top-0 h-[750px] w-[40%]  flex scale-130 items-center justify-end pointer-events-none z-10 bg-white">
 
       <Canvas
         camera={{ position: position, fov: fov }}
         gl={{ alpha: transparent }}
-        onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)}
+      style={{ background: 'transparent' }} 
+        onCreated={({ gl }) => gl.setClearColor(new THREE.Color(0x000000), 0)} 
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={1 / 60}>
@@ -132,7 +133,7 @@ useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 0.7]);
       <mesh ref={band}>
         <meshLineGeometry />
         <meshLineMaterial
-          color="#white"
+          color="white"
           backgr
           depthTest={false}
           resolution={isSmall ? [1000, 2000] : [1000, 1000]}

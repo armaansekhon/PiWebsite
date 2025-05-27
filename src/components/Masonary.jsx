@@ -61,7 +61,7 @@ function Masonry({ data }) {
   return (
     <div
       ref={ref}
-      className="relative w-full h-full"
+      className="relative bg-white  w-full h-full"
       style={{ height: Math.max(...heights) }}
     >
       {transitions((style, item) => (
@@ -71,7 +71,7 @@ function Masonry({ data }) {
           className="absolute p-[15px] [will-change:transform,width,height,opacity]"
         >
           <div
-            className="relative w-full h-full overflow-hidden uppercase text-[10px] leading-[10px] rounded-[4px] shadow-[0px_10px_50px_-10px_rgba(0,0,0,0.2)] transition duration-300 ease hover:scale-110"
+            className="relative w-full h-full overflow-hidden uppercase text-[10px] leading-[10px] rounded-[4px]  transition duration-300 ease hover:scale-110"
             style={{
               backgroundColor: '#ffffff',
               backgroundImage: `url(${item.image})`,
