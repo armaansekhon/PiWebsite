@@ -1,4 +1,5 @@
 import React, { useRef,useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -27,6 +28,9 @@ import Footer from "./Footer";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Firstt() {
+  const Navigate=useNavigate();
+  const workRef = useRef(null);
+const servicesRef = useRef(null);
   const svgRef = useRef(null);
   const outerref = useRef(null);
   const staticTextRef = useRef(null);
@@ -45,6 +49,21 @@ export default function Firstt() {
     const letterRefs = useRef([]);
     letterRefs.current = [];
     return [letterRefs, (ref) => ref && letterRefs.current.push(ref)];
+  }
+
+  const HandleNavClick=(link)=>{
+    if(link ==="About Us")
+    {
+      Navigate("/about");
+    }
+    else if (link ==="Work" && workRef.current){
+      workRef.current.scrollIntoView({behavior:"smooth"});
+    }
+    else if (link === "Services" && servicesRef.current){
+      servicesRef.current.scrollIntoView({behavior:"smooth"});
+    }
+
+
   }
 
   const [letterRef, setletterRef] = useArrayRef();
@@ -208,6 +227,7 @@ export default function Firstt() {
             {["Work", "About Us", "Services", "Contact Us"].map((link, idx) => (
               <a
                 key={idx}
+                onClick={()=>HandleNavClick(link)}
                 className="text-[3vw] md:text-[1.75vw] font-jl cursor-pointer"
               >
                 {link}
@@ -296,10 +316,10 @@ export default function Firstt() {
           {/* bg-[url('/random1.jpg')]
            */}
            
-          <div>
+          <div ref={servicesRef}>
             <Horizontal></Horizontal>
           </div>
-          <div>
+          <div ref={workRef}>
             <div className="flex justify-center mb-4">
               <h5 className=" font-jl text-xl md:text-1xl font-semibold text-white tracking-wide">
                 Have a Glimpse at Our

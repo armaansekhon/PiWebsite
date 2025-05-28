@@ -25,16 +25,7 @@ function Tech() {
     <div className=' justify-center font-jr text-gray-500 text-center text-[20px]'>Tech And Tools We Use</div>
     <div className=' justify-center font-jSB text-gray-900 text-center text-[50px]'>Robust Technologies Behind</div>
       <div className=' justify-center font-jSB text-gray-900 text-center text-[50px]'>Every Product We Design and Deliver</div>
-     {/* <div className=' text-orange-400'><TrueFocus
-              sentence="Tech Stacks"
-              
-              manualMode={false}
-              blurAmount={2}
-              borderColor="#00D8FF"
-              animationDuration={2}
-              pauseBetweenAnimations={1}
-            />
-       </div> */}
+    
 
         <div className=' justify-center font-jl text-gray-900 text-center text-[20px]'>We Use Top Technologies to Build Your Dream Products</div>
   

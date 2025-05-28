@@ -6,6 +6,7 @@ import Lanyard from "../components/About/Lanyard";
 import Tech from "../components/About/Tech";
 import { motion, AnimatePresence } from "framer-motion"; // 👈 Add this
 import Stepp from "../components/About/Stepp";
+import Footer from "../components/Footer";
 
 function About() {
   const aboutSectionRef = useRef(null);
@@ -71,7 +72,7 @@ function About() {
                   growing IT company established in 2016. The company located in
                   Mohali (Punjab) With a diverse portfolio of clients both
                   nationally and internationally, we are dedicated to delivering
-                  cutting-edge solutions across various domains...
+                  cutting-edge solutions across various domains ncluding software development, web development, Android services, ERP solutions, Technical Support, as well as design and implementation.
                 </p>
                 <p className="mt-4">
                  Our greatest asset is our efficient and experienced team, equipped with modern infrastructure and a vibrant group of young, competitive professionals. We are committed to providing high-quality, tailored solutions that meet the unique needs of our clients, ensuring their success in a fast-evolving digital landscape
@@ -102,9 +103,17 @@ function About() {
         <Tech />
       </section>
       {/* === Tech Section === */}
-      <section  className="h-screen bg-white">
+      <section  className="h-screen mb-70 mt-20 bg-white">
+        <div>
+             <div className=' justify-center font-jr text-gray-500 text-center text-[20px]'>Our Work Approach</div>
+    <div className=' justify-center font-jSB text-gray-900 text-center text-[50px]'>Driven by innovation</div>
+      <div className=' justify-center font-jSB text-gray-900 text-center text-[50px]'>we engineer thoughtful digital journeys.</div>
+    
+
+        </div>
         <Stepp></Stepp>
       </section>
+      <Footer></Footer>
       
     </>
   );

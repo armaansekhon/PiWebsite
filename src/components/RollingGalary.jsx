@@ -10,15 +10,15 @@ import BlurText from "./BlurText";
 const VIDEO_TESTIMONIALS = [
   {
     src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    thumbnail: "/feedback4.png",
+    thumbnail: "/feed4.png",
   },
   {
     src: "https://www.w3schools.com/html/movie.mp4",
-    thumbnail: "/feedback4.png",
+    thumbnail: "/feed5.png",
   },
   {
     src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    thumbnail: "/feedback4.png",
+    thumbnail: "/feed5.png",
   },
   {
     src: "https://www.w3schools.com/html/movie.mp4",
