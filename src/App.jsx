@@ -5,6 +5,7 @@ import { Routes,Route } from "react-router-dom"
 
 import Firstt from "./components/Firstt"
 import About from "./pages/About"
+import Contact from "./pages/Contact"
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   <Routes>
     <Route path="/" Component={Firstt} />
     <Route path="/about" Component={About} />
+     <Route path="/contact" Component={Contact} />
     
 
 

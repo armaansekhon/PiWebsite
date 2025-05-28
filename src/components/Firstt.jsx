@@ -62,6 +62,10 @@ const servicesRef = useRef(null);
     else if (link === "Services" && servicesRef.current){
       servicesRef.current.scrollIntoView({behavior:"smooth"});
     }
+    else if(link ==="Contact Us")
+      {
+      Navigate("/contact");
+    }
 
 
   }
