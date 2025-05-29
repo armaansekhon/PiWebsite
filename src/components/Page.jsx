@@ -13,23 +13,24 @@ export default function ScrollT() {
   });
 
   return (
-    <main ref={container} className="min-h-[300vh] mt-16 bg-white relative">
+    <main ref={container} className="min-h-[250vh] sm:min-h-[300vh] mt-8 sm:mt-12 md:mt-16 bg-white relative w-full">
       {/* Container for Tsparticles, scoped to ScrollT */}
-     
-
-      {projects.map((project, i) => {
-        const targetScale = 1 - (projects.length - i) * 0.05;
-        return (
-          <Card
-            key={`p_${i}`}
-            i={i}
-            {...project}
-            progress={scrollYProgress}
-            range={[i * 0.25, 1]}
-            targetScale={targetScale}
-          />
-        );
-      })}
+      {/* <Tsparticles /> */}
+      <div className="flex flex-col items-center">
+        {projects.map((project, i) => {
+          const targetScale = 1 - (projects.length - i) * 0.05;
+          return (
+            <Card
+              key={`p_${i}`}
+              i={i}
+              {...project}
+              progress={scrollYProgress}
+              range={[i * 0.25, 1]}
+              targetScale={targetScale}
+            />
+          );
+        })}
+      </div>
     </main>
   );
 }

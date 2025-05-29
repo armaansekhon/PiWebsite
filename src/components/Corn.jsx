@@ -1,15 +1,18 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { MotionConfig, motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 
-export const Example = () => {
+export  function Example() {
   const [active, setActive] = useState(false);
   const [bgImage, setBgImage] = useState("/images/default.jpg");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const overlayRef = useRef();
-  const leftRef = useRef();
-  const rightRef = useRef();
-  const tlRef = useRef();
+  const overlayRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const tlRef = useRef(null);
 
   const imageMap = {
     home: "/office.jpeg",
@@ -18,6 +21,12 @@ export const Example = () => {
     contact: "/images/contact.jpg",
   };
 
+  // Reset active state on route change
+  useEffect(() => {
+    setActive(false);
+  }, [location.pathname]);
+
+  // GSAP timeline setup
   useEffect(() => {
     const tl = gsap.timeline({ paused: true });
     tl.set(overlayRef.current, { display: "flex" })
@@ -40,24 +49,34 @@ export const Example = () => {
       );
 
     tlRef.current = tl;
+    return () => tl.kill();
   }, []);
 
+  // Play/reverse timeline based on active state
   useEffect(() => {
     if (active) {
-      tlRef.current.play();
+      tlRef.current?.play();
     } else {
       tlRef.current
-        .reverse()
+        ?.reverse()
         .eventCallback("onReverseComplete", () => {
           gsap.set(overlayRef.current, { display: "none" });
         });
     }
   }, [active]);
 
+  // Handle navigation and close overlay
+  const handleNavClick = (path) => {
+    navigate(path);
+    setActive(false);
+  };
+
   return (
     <>
-      <div className="flex justify-center items-center h-10 rounded-xl bg-white px-4 z-50 relative">
-        <h2 className="text-[2.9vh] font-jl text-black mr-4">Menu</h2>
+      <div className="flex justify-center items-center h-8 sm:h-10 md:h-12 px-2 sm:px-3 md:px-4 rounded-xl bg-white z-50 relative">
+        <h2 className="text-sm sm:text-base md:text-lg font-jl text-black mr-2 sm:mr-3 md:mr-4">
+          Menu
+        </h2>
         <AnimatedHamburgerButton active={active} setActive={setActive} />
       </div>
 
@@ -66,11 +85,11 @@ export const Example = () => {
         ref={overlayRef}
         className="fixed top-0 left-0 w-full h-screen bg-black text-white z-40 hidden"
       >
-        <div className="flex w-full h-full">
-          {/* Branding - Left side */}
+        <div className="flex flex-col md:flex-row w-full h-full">
+          {/* Branding - Top/Left side */}
           <div
             ref={leftRef}
-            className="w-[75%] flex flex-col justify-center px-10 relative overflow-hidden"
+            className="w-full md:w-[75%] h-[60%] md:h-full flex flex-col justify-center px-4 sm:px-6 md:px-10 relative overflow-hidden"
             style={{
               backgroundImage: `url(${bgImage})`,
               backgroundSize: "cover",
@@ -78,62 +97,66 @@ export const Example = () => {
             }}
           >
             <div className="relative z-10">
-              <h1 className="text-7xl md:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
                 PiSoft
               </h1>
-              <h1 className="text-7xl md:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
                 Informatics
               </h1>
-              <h3 className="mt-10 text-3xl md:text-5xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
+              <h3 className="mt-4 sm:mt-6 md:mt-10 text-xl sm:text-2xl md:text-5xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
                 Contact
               </h3>
-              <div className="text-2xl md:text-2xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
-                <p className="text-[3vh]">Plot No C-86, Pannu Tower</p>
-                <p className="text-[3vh]">
+              <div className="text-base sm:text-lg md:text-2xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
+                <p className="text-sm sm:text-base md:text-lg">
+                  Plot No C-86, Pannu Tower
+                </p>
+                <p className="text-sm sm:text-base md:text-lg">
                   2nd Floor, Phase 7, Industrial area,
                 </p>
-                <p className="text-[3vh]">
+                <p className="text-sm sm:text-base md:text-lg">
                   Mohali (Punjab) opp. Cheema Boiler India.
                 </p>
-                <p className="mt-4 text-[3vh]">
+                <p className="mt-2 sm:mt-3 md:mt-4 text-sm sm:text-base md:text-lg">
                   Email: info@youritcompany.com
                 </p>
-                <p className="text-[3vh]">Phone: +918288029930</p>
+                <p className="text-sm sm:text-base md:text-lg">
+                  Phone: +918288029930
+                </p>
               </div>
             </div>
             <div className="absolute inset-0 bg-black opacity-60 z-0" />
           </div>
 
-          {/* Nav Links - Right side */}
+          {/* Nav Links - Bottom/Right side */}
           <div
             ref={rightRef}
-            className="w-1/2 flex flex-col items-center justify-center gap-10 font-jl text-5xl"
+            className="w-full md:w-1/2 h-[40%] md:h-full flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-10 font-jl text-2xl sm:text-3xl md:text-5xl"
           >
             <a
-              href="/"
+              onClick={() => handleNavClick("/")}
               onMouseEnter={() => setBgImage(imageMap.home)}
-              className="hover:text-blue-400 transition"
+              className="hover:text-blue-400 transition cursor-pointer"
             >
               Home
             </a>
             <a
-              href="/about"
+              onClick={() => handleNavClick("/about")}
               onMouseEnter={() => setBgImage(imageMap.about)}
-              className="hover:text-blue-400 transition"
+              className="hover:text-blue-400 transition cursor-pointer"
             >
               About
             </a>
             <a
-              href="/services"
+              onClick={() => handleNavClick("/services")}
               onMouseEnter={() => setBgImage(imageMap.services)}
-              className="hover:text-blue-400 transition"
+              className="hover:text-blue-400 transition cursor-pointer"
             >
               Services
             </a>
             <a
-              href="/contact"
+              onClick={() => handleNavClick("/contact")}
               onMouseEnter={() => setBgImage(imageMap.contact)}
-              className="hover:text-blue-400 transition"
+              className="hover:text-blue-400 transition cursor-pointer"
             >
               Contact
             </a>
@@ -156,26 +179,26 @@ const AnimatedHamburgerButton = ({ active, setActive }) => {
         initial={false}
         animate={active ? "open" : "closed"}
         onClick={() => setActive((pv) => !pv)}
-        className="relative h-10 w-12 rounded-full bg-white/0 transition-colors hover:bg-white/20"
+        className="relative h-8 sm:h-10 md:h-12 w-8 sm:w-10 md:w-12 rounded-full bg-white/0 transition-colors hover:bg-white/20"
       >
         <motion.span
           variants={VARIANTS.top}
-          className="absolute h-1 w-8 bg-black"
+          className="absolute h-[2px] w-5 sm:w-6 md:w-8 bg-black"
           style={{ y: "-50%", left: "50%", x: "-50%", top: "35%" }}
         />
         <motion.span
           variants={VARIANTS.middle}
-          className="absolute h-1 w-8 bg-black"
+          className="absolute h-[2px] w-5 sm:w-6 md:w-8 bg-black"
           style={{ left: "50%", x: "-50%", top: "50%", y: "-50%" }}
         />
         <motion.span
           variants={VARIANTS.bottom}
-          className="absolute h-1 w-5 bg-black"
+          className="absolute h-[2px] w-3 sm:w-4 md:w-5 bg-black"
           style={{
             x: "-50%",
             y: "50%",
             bottom: "35%",
-            left: "calc(50% + 8px)",
+            left: "calc(50% + 4px)",
           }}
         />
       </motion.button>
@@ -211,7 +234,7 @@ const VARIANTS = {
     closed: {
       rotate: ["45deg", "0deg", "0deg"],
       bottom: ["50%", "50%", "35%"],
-      left: "calc(50% + 8px)",
+      left: "calc(50% + 4px)",
     },
   },
 };

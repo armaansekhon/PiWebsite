@@ -78,9 +78,9 @@ const RollingGallery = () => {
     return () => window.removeEventListener("resize", resize);
   }, []);
 
-  const faceWidth = screenWidth / 2.9 / 1.5;
-  console.log(faceWidth);
-  const faceHeight = 350;
+  // Responsive face width and height
+  const faceWidth = screenWidth <= 640 ? screenWidth * 0.4 : screenWidth / 4.2;
+  const faceHeight = screenWidth <= 640 ? 300 : screenWidth <= 768 ? 250 : 350;
   const cylinderWidth = faceWidth * faceCount;
   const radius = cylinderWidth / (2 * Math.PI);
 
@@ -128,25 +128,25 @@ const RollingGallery = () => {
   };
 
   return (
-    <div className="relative h-screen mb-20 w-full overflow-hidden">
-      <div className="flex flex-col pl-20 justify-center mt-10">
+    <div className="relative h-screen w-full overflow-hidden mb-8 sm:mb-12 md:mb-16">
+      <div className="flex flex-col items-center justify-center mt-6 sm:mt-8 md:mt-10">
         <BlurText
           text="Testimonials"
           delay={250}
           animateBy="words"
           direction="top"
-          className="text-6xl font-jSB text-white"
+          className="text-4xl sm:text-5xl md:text-6xl font-jSB text-white text-center"
         />
         <BlurText
           text="See the Impact We've Made...."
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-3xl  font-jl mt-3 text-black text-center mb-2"
+          className="text-lg sm:text-xl md:text-2xl font-jl mt-2 sm:mt-3 text-black text-center"
         />
       </div>
 
-      <div className="flex h-full items-center justify-center [perspective:1000px]">
+      <div className="flex h-full items-center justify-center [perspective:800px] sm:[perspective:1000px]">
         <motion.div
           drag="x"
           dragElastic={0.2}
@@ -161,14 +161,14 @@ const RollingGallery = () => {
             rotateY: rotation,
             width: cylinderWidth,
             transformStyle: "preserve-3d",
-            willChange: "transform", // optimization
+            willChange: "transform",
           }}
-          className="flex cursor-grab pb-20 items-center justify-center"
+          className="flex cursor-grab pb-8 sm:pb-12 md:pb-20 items-center justify-center"
         >
           {testimonials.map((item, i) => (
             <div
               key={i}
-              className="group absolute flex h-fit items-center justify-center p-4 [backface-visibility:hidden]"
+              className="group absolute flex h-fit items-center justify-center p-2 sm:p-3 md:p-4 [backface-visibility:hidden]"
               style={{
                 width: `${faceWidth}px`,
                 height: `${faceHeight}px`,
@@ -176,7 +176,7 @@ const RollingGallery = () => {
               }}
             >
               {item.type === "video" ? (
-                <div className="relative w-full h-full rounded-xl overflow-hidden border-2 border-gray-200 shadow-lg">
+                <div className="relative w-full h-full rounded-lg sm:rounded-xl overflow-hidden border-2 border-gray-200 shadow-lg">
                   <img
                     src={item.thumbnail}
                     alt="Video thumbnail"
@@ -192,21 +192,24 @@ const RollingGallery = () => {
                   />
                 </div>
               ) : (
-                <div className="bg-white rounded-xl p-6 shadow-lg flex flex-col items-center text-center h-full w-full">
+                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-lg flex flex-col items-center text-center h-full w-full">
                   <img
                     src={item.profilePic}
-                    className="w-20 h-20 rounded-full mb-4 object-cover"
-                    alt="Profile"
+                    className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full mb-2 sm:mb-3 md:mb-4 object-cover"
                   />
-                  <div className="font-SB text-gray-900 text-lg">{item.name}</div>
-                  <div className="text-sm font-jl text-gray-700 mb-2">{item.designation}</div>
-                  <div className="flex mb-4">
+                  <div className="font-SB text-gray-900 text-base sm:text-lg md:text-xl">
+                    {item.name}
+                  </div>
+                  <div className="text-xs sm:text-sm md:text-base font-jl text-gray-700 mb-1 sm:mb-2">
+                    {item.designation}
+                  </div>
+                  <div className="flex mb-2 sm:mb-3 md:mb-4">
                     {Array(5)
                       .fill(0)
                       .map((_, idx) => (
                         <svg
                           key={idx}
-                          className="w-5 h-5 text-yellow-400"
+                          className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -214,7 +217,9 @@ const RollingGallery = () => {
                         </svg>
                       ))}
                   </div>
-                  <p className="text-gray-700 font-jl text-base">“{item.content}”</p>
+                  <p className="text-gray-700 font-jl text-sm sm:text-base md:text-lg">
+                    “{item.content}”
+                  </p>
                 </div>
               )}
             </div>

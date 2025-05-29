@@ -21,7 +21,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
   return (
     <div
       ref={container}
-      className="h-screen flex items-center justify-center sticky top-0"
+      className="h-screen flex items-center justify-center sticky top-0 w-full"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -31,7 +31,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="relative flex flex-col h-[690px] w-[95%] rounded-[25px] overflow-hidden"
+        className="relative flex flex-col h-[80vh] sm:h-[85vh] md:h-[690px] w-full sm:w-[95%] rounded-xl sm:rounded-[25px] overflow-hidden mx-auto"
       >
         <a
           href={url}
@@ -60,9 +60,13 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col justify-center h-full p-10 text-white pointer-events-none">
-          <h2 className="mb-10 font-jB  text-[#fff] text-[6rem]">{title}</h2>
-          <p className="font-jl text-3xl first-letter:text-[28px]">{description}</p>
+        <div className="relative z-10 flex flex-col justify-center h-full p-4 sm:p-6 md:p-8 lg:p-10 text-white pointer-events-none">
+          <h2 className="mb-4 sm:mb-6 md:mb-8 font-jB text-white text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] text-center sm:text-left">
+            {title}
+          </h2>
+          <p className="font-jl text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left">
+            {description}
+          </p>
         </div>
 
         {/* Floating Tooltip */}
@@ -78,7 +82,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
                 translateX: '-50%',
                 translateY: '-120%',
               }}
-              className="fixed z-30 bg-black text-white text-sm px-3 py-1 rounded-lg pointer-events-none shadow-lg"
+              className="fixed z-30 bg-black text-white text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 rounded-lg pointer-events-none shadow-lg"
             >
               {url}
             </motion.div>

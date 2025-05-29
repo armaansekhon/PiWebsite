@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import { Example } from "../components/Corn";
 import Lanyard from "../components/About/Lanyard";
 import Tech from "../components/About/Tech";
-import { motion, AnimatePresence } from "framer-motion"; // 👈 Add this
+import { motion, AnimatePresence } from "framer-motion";
 import Stepp from "../components/About/Stepp";
 import Footer from "../components/Footer";
 
@@ -32,50 +32,57 @@ function About() {
 
   return (
     <>
-      <div className="w-full h-full bg-white p-6 relative overflow-hidden">
+      <div className="w-full flex flex-col bg-white p-4 sm:p-6 md:p-8 relative">
         {/* Navbar */}
-        <div className="absolute z-50 top-12 left-0">
+        <div className="fixed z-50 top-4 left-0 md:top-12">
           <Navbar />
         </div>
 
         {/* Hamburger Icon */}
-        <div className="fixed top-8 right-0 z-50 flex items-center space-x-4">
+        <div className="fixed top-4 right-4 z-50 flex items-center space-x-4">
           <Example />
         </div>
 
         {/* === About Section === */}
         <section
           ref={aboutSectionRef}
-          className="h-screen flex flex-row items-start relative"
+          className="min-h-screen flex flex-col md:flex-row items-start relative mb-16 sm:mb-32 z-10"
         >
-          <div className="w-[65%] z-10">
+          <div className="w-full md:w-2/3 lg:w-[65%] z-10">
             <BlurText
               text="Bringing Ideas to Life"
               delay={200}
               animateBy="words"
               direction="top"
-              className="mt-20 font-jB text-[4vw] md:text-1xl text-gray-900 tracking-wider"
+              className="mt-16 sm:mt-20 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 tracking-wider"
             />
 
-            <div className="mt-10">
+            <div className="mt-6 sm:mt-8 md:mt-10">
               <BlurText
                 text="About Us"
                 delay={200}
                 animateBy="words"
                 direction="top"
-                className="font-jSB text-[3vw] md:text-1xl text-orange-400 tracking-wider"
+                className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
               />
 
-              <div className="text-2xl font-jl text-gray-800 tracking-wider mt-6">
+              <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
                 <p>
                   Pisoft Informatics Private Limited is a dynamic and rapidly
                   growing IT company established in 2016. The company located in
                   Mohali (Punjab) With a diverse portfolio of clients both
                   nationally and internationally, we are dedicated to delivering
-                  cutting-edge solutions across various domains ncluding software development, web development, Android services, ERP solutions, Technical Support, as well as design and implementation.
+                  cutting-edge solutions across various domains including software
+                  development, web development, Android services, ERP solutions,
+                  Technical Support, as well as design and implementation.
                 </p>
                 <p className="mt-4">
-                 Our greatest asset is our efficient and experienced team, equipped with modern infrastructure and a vibrant group of young, competitive professionals. We are committed to providing high-quality, tailored solutions that meet the unique needs of our clients, ensuring their success in a fast-evolving digital landscape
+                  Our greatest asset is our efficient and experienced team,
+                  equipped with modern infrastructure and a vibrant group of young,
+                  competitive professionals. We are committed to providing
+                  high-quality, tailored solutions that meet the unique needs of
+                  our clients, ensuring their success in a fast-evolving digital
+                  landscape.
                 </p>
               </div>
             </div>
@@ -85,7 +92,7 @@ function About() {
           <AnimatePresence>
             {showLanyard && (
               <motion.div
-                className="absolute bg-transparent right-0 top-0 w-1/3 z-0"
+                className="absolute bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
@@ -96,25 +103,35 @@ function About() {
             )}
           </AnimatePresence>
         </section>
+
+        {/* === Tech Section === */}
+        <section ref={techSectionRef} className="min-h-[50vh] bg-white mb-16 sm:mb-32 relative z-10">
+          <Tech />
+        </section>
+
+        {/* === Work Approach Section === */}
+        <section className="h-auto  bg-white py-10 sm:py-20 md:mb-2 mb-16 sm:mb-10 relative z-10">
+          <div className="text-center">
+            <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
+              Our Work Approach
+            </div>
+            <div className="font-jSB text-gray-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">
+              Driven by innovation
+            </div>
+            <div className="font-jSB text-gray-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+              we engineer thoughtful digital journeys.
+            </div>
+          </div>
+          <div className="mt-8 sm:mt-12">
+            <Stepp />
+          </div>
+        </section>
+
+        {/* === Footer === */}
+        <footer className="relative bg-white pt-16 sm:pt-24 z-10">
+          <Footer />
+        </footer>
       </div>
-
-      {/* === Tech Section === */}
-      <section ref={techSectionRef} className="h-screen bg-white">
-        <Tech />
-      </section>
-      {/* === Tech Section === */}
-      <section  className="h-screen mb-70 mt-20 bg-white">
-        <div>
-             <div className=' justify-center font-jr text-gray-500 text-center text-[20px]'>Our Work Approach</div>
-    <div className=' justify-center font-jSB text-gray-900 text-center text-[50px]'>Driven by innovation</div>
-      <div className=' justify-center font-jSB text-gray-900 text-center text-[50px]'>we engineer thoughtful digital journeys.</div>
-    
-
-        </div>
-        <Stepp></Stepp>
-      </section>
-      <Footer></Footer>
-      
     </>
   );
 }

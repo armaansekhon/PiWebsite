@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import imgsrc from "../assets/staff.jpg";
@@ -48,7 +49,7 @@ const TiltCard = () => {
         backfaceVisibility: "hidden",
         isolation: "isolate",
       }}
-      className="relative h-[26vw] w-[45vw] rounded-xl bg-gradient-to-br from-orange-200 to-orange-500 shadow-xl"
+      className="relative w-full max-w-[300px] sm:max-w-[400px] md:max-w-[560px] h-[180px] sm:h-[220px] md:h-[340px] rounded-xl bg-gradient-to-br from-orange-200 to-orange-500 shadow-xl"
     >
       <motion.div
         style={{
@@ -57,7 +58,7 @@ const TiltCard = () => {
           willChange: "transform",
           backfaceVisibility: "hidden",
         }}
-        className="absolute inset-5 bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden"
+        className="absolute inset-4 sm:inset-5 bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden"
       >
         <motion.img
           src={imgsrc}
@@ -76,7 +77,7 @@ const TiltCard = () => {
 
 const Hover = () => {
   return (
-    <div className="w-full flex items-center justify-center pointer-events-auto">
+    <div className="w-full flex items-center justify-center pointer-events-auto px-4 sm:px-6 md:px-0">
       <TiltCard />
     </div>
   );

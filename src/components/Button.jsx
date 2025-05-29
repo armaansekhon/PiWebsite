@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
@@ -6,9 +7,9 @@ function Button() {
   const [isHover, setIsHover] = useState(false);
 
   return (
-    <div>
+    <div className="relative w-full max-w-[160px] sm:max-w-[220px] md:max-w-[220px]">
       <div
-        className="cursor-pointer flex w-[20vh] sm:w-[24vh] md:w-[28vh] right-[-24vh] sm:right-[-28vh] md:right-[-32vh] top-1 flex-row relative bg-white border-amber-400 border rounded-3xl overflow-hidden justify-center items-center"
+        className="cursor-pointer flex w-full min-w-[140px] sm:w-[220px] md:w-[260px] bg-white border-amber-400 border rounded-3xl overflow-hidden justify-center items-center relative py-2 px-4"
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
       >
@@ -21,21 +22,22 @@ function Button() {
             ease: 'easeIn',
             duration: 0.3,
           }}
-          className="absolute left-[14px] sm:left-[16px] md:left-[18px] circle h-[10px] w-[10px] rounded-full"
+          className="absolute left-3 sm:left-4 circle h-2.5 w-2.5 rounded-full"
         />
-        <motion.div className="z-10 font-jSB tracking-wide p-1">
+        <motion.div className="z-10 font-jSB tracking-wide text-center">
           <motion.p
             animate={{
               x: isHover ? -8 : 8,
               color: isHover ? '#ffffff' : '#FFA726',
             }}
+            className="text-sm sm:text-base md:text-lg"
           >
             More About Us
           </motion.p>
         </motion.div>
         <ArrowRightIcon
           color="white"
-          className="right-[12px] sm:right-[14px] md:right-[16px] w-[16px] h-[16px] stroke-[3] absolute"
+          className="absolute right-3 sm:right-4 w-4 h-4 sm:w-5 sm:h-5 stroke-[3]"
         />
       </div>
     </div>
