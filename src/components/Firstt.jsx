@@ -106,7 +106,7 @@ const servicesRef = useRef(null);
     tl.fromTo(
       svgRef.current,
       { scale: 1, transformOrigin: "center center" },
-      { scale: 28, ease: "power2.inOut" }
+      { scale: 50, ease: "power2.inOut" }
     );
 
     tl.to(
@@ -190,7 +190,7 @@ const servicesRef = useRef(null);
               <mask id="textmask">
                 <rect width="100%" height="100%" fill="white" />
                 <text
-                  className="font-bebas select-none text-black text-[24vw] md:text-[38vw] tracking-wider"
+                  className="font-bebas select-none text-black text-[24vw] md:text-[32vw] tracking-wider"
                   x="50%"
                   y="38%"
                   dominantBaseline="middle"
@@ -343,7 +343,7 @@ const servicesRef = useRef(null);
                 Results matter.
               </div>
 
-              <div className="font-jl font-normal  mt-8 text-[2.5vh]">
+              <div className="font-jl  font-normal  mt-8 text-[2.5vh]">
                 " Discover how our customized solutions have delivered
                 measurable business outcomes for clients across various
                 industries. Each case study highlights the strategic impact of
@@ -351,7 +351,8 @@ const servicesRef = useRef(null);
               </div>
             </div>
           </div>
-          <ScrollT></ScrollT>
+          <section className="mb-10">  <ScrollT></ScrollT></section>
+        
          <section
   className="bg-cover  bg-center min-h-screen pb-10 bg-no-repeat"
   style={{ backgroundImage: "url('/testbg.png')" }}
