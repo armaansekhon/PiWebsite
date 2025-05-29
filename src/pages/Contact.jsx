@@ -3,8 +3,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Example } from "../components/Corn";
-import Carousel from "../components/Crousel";
-import { World } from "../components/globe"; // Adjust path to your Globe component file
+
+import {World} from "../components/Globe";
 import Footer from "../components/Footer";
 import { FiMail, FiInfo } from "react-icons/fi"; // Import the mail and info icons
 
